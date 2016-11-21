@@ -1,0 +1,12 @@
+{
+  "name": "node_notification_pusher",
+  "version": "1.0.0",
+  "description": "Node script to push notification via FCM",
+  "main": "pushScript.js",
+  "author": "Kevin Patel",
+  "license": "ISC",
+  "dependencies": {
+    "firebase-admin": "^4.0.2",
+    "request": "^2.79.0"
+  }
+}
