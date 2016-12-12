@@ -1,1 +1,1 @@
-worker: node pushScript.js
+web: node pushScript.js

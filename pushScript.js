@@ -6,12 +6,19 @@ var API_KEY = "AIzaSyCT1fxZmePaWESKmafVK4FBvdpV7BGO9Fs"; // Your Firebase Cloud 
 // Fetch the service account key JSON file contents
 var serviceAccount = require("./serviceAccountKey.json");
 
+// firebase.database.enableLogging(true);
+
 // Initialize the app with a service account, granting admin privileges
 firebase.initializeApp({
   credential: firebase.credential.cert(serviceAccount),
   databaseURL: "https://friendlychat-28062.firebaseio.com"
 });
 ref = firebase.database().ref();
+
+function debugFirebase() {
+   console.log("Debug firebase");
+   ref.child('debug').set(true);
+};
 
 function listenForNotificationRequests() {
   console.log("Listening for notificationRequests");
@@ -95,4 +102,5 @@ function sendNotificationToUser(child, fcmToken) {
 }
 
 // start listening
+// debugFirebase();
 listenForNotificationRequests();
