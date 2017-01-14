@@ -1,7 +1,7 @@
 var firebase = require('firebase-admin');
 var request = require('request');
 
-var API_KEY = "AIzaSyCT1fxZmePaWESKmafVK4FBvdpV7BGO9Fs"; // Your Firebase Cloud Messaging Server API key
+var API_KEY = "AIzaSyBiucVvvS8EYH_JYH7fRbZHxxiLrfd8WLc"; // Your Firebase Cloud Messaging Server API key
 
 // Fetch the service account key JSON file contents
 var serviceAccount = require("./serviceAccountKey.json");
@@ -11,7 +11,7 @@ var serviceAccount = require("./serviceAccountKey.json");
 // Initialize the app with a service account, granting admin privileges
 firebase.initializeApp({
   credential: firebase.credential.cert(serviceAccount),
-  databaseURL: "https://friendlychat-28062.firebaseio.com"
+  databaseURL: "https://lzchat-c537f.firebaseio.com"
 });
 ref = firebase.database().ref();
 
@@ -43,6 +43,8 @@ function getUsersForGid(messageChild, groupID) {
   groupNode.once('value', function(dataSnapshot){
       var usersImgs = dataSnapshot.val().usersImgs;
       var uids = Object.keys(usersImgs);
+      var index = uids.indexOf(messageChild.senderID);
+      uids.splice(index, 1);
       console.log("Got usersIds " + uids);
       sendNotificationForUids(messageChild, uids);
   });
